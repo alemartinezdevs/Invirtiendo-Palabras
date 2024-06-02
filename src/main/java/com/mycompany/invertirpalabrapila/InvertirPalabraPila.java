@@ -1,23 +1,27 @@
 package com.mycompany.invertirpalabrapila;
 import java.util.Scanner;
-/*
- * @author gabrielapineda
- */
+
+
 public class InvertirPalabraPila {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         boolean continuar = true;
+
+        System.out.println("\n--------------------------------------------------");
+        System.out.println("\t     INVIRTIENDO UNA PALABRA");
+        System.out.println("--------------------------------------------------");
         
         //repetir hasta que el usuario no desee continuar
         do{
 
-            System.out.print("¿Cuantas cadenas desea inverir?");
+            System.out.println("\n¿Cuantas cadenas desea inverir?");
+            System.out.print("Respuesta:");
             int cantidad = 0;
             try{
                 cantidad = in.nextInt();
             }catch(Exception e){
-                System.out.println("Error! Ingrese solo numero.");
+                System.out.println("Error! Ingrese solo números.");
                 in.nextLine();
                 continue;
             }
@@ -27,7 +31,7 @@ public class InvertirPalabraPila {
                 String cadena = "";
                 //verificar que la cadena ingresada no este vacia si es asi preguntar hasta que sea lo contrario
                 do{
-                    System.out.print("\nIngrese la cadena a invertir: ");
+                    System.out.print("\nIngrese la cadena #"+(i+1)+" a invertir: ");
                     cadena = in.nextLine();
                     if(cadena.isEmpty()){
                         System.out.println("La cadena esta vacía, intente de nuevo");   
@@ -43,7 +47,8 @@ public class InvertirPalabraPila {
                 System.out.println(); //salto de linea entre cada cadena 
             }
             
-            System.out.print("\n¿Desea continuar ingresando mas cadenas?(si/no)");
+            System.out.println("\n¿Desea continuar ingresando mas cadenas?(si/no)");
+            System.out.print("Respuesta: ");
             String respuesta = in.nextLine().toLowerCase();
             // Verificar si la respuesta no es "si" ni "no"
             while (!respuesta.equals("si") && !respuesta.equals("no")) {
@@ -52,6 +57,7 @@ public class InvertirPalabraPila {
             }
             if (!respuesta.equals("si")) {
                 continuar = false;
+                System.out.println("\nPrograma Finalizado...");
             }   
         }
         while(continuar);
