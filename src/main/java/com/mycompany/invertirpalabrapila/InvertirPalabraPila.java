@@ -8,16 +8,17 @@ public class InvertirPalabraPila {
         Scanner in = new Scanner(System.in);
         boolean continuar = true;
 
+        //Encabezado
         System.out.println("\n--------------------------------------------------");
-        System.out.println("\t     INVIRTIENDO UNA PALABRA");
+        System.out.println("\t     INVERTIR UNA PALABRA");
         System.out.println("--------------------------------------------------");
         
         //repetir hasta que el usuario no desee continuar
         do{
 
-            System.out.println("\n¿Cuantas cadenas desea inverir?");
+            System.out.println("\n¿Cuantas cadenas desea invertir?");
             System.out.print("Respuesta:");
-            int cantidad = 0;
+            int cantidad;
             try{
                 cantidad = in.nextInt();
             }catch(Exception e){
@@ -29,6 +30,7 @@ public class InvertirPalabraPila {
             
             for(int i=0;i<cantidad;i++){
                 String cadena = "";
+
                 //verificar que la cadena ingresada no este vacia si es asi preguntar hasta que sea lo contrario
                 do{
                     System.out.print("\nIngrese la cadena #"+(i+1)+" a invertir: ");
@@ -38,9 +40,15 @@ public class InvertirPalabraPila {
                     }else if(cadena.length() <= 1){
                         System.out.println("La cadena debe tener por lo menos 2 caracteres");
                     }
+
+
+                    /*para manejar el espacio como un caracter se debe crear una 
+                    función en el que predefinamos un caracter al momento que el usuario use la tecla espacio 
+                    */ 
+
                 }while(cadena.isEmpty() || cadena.length()<=1);
                 
-                //usar la clase palabra para invertir la cadena usando pilas 
+                //instanciamos la clase palabra para invertir la cadena usando pilas 
                 Palabra p = new Palabra();
                 System.out.println("\nCadena "+(i+1)+" invertida");
                 p.invertirPalabra(cadena);
@@ -48,19 +56,21 @@ public class InvertirPalabraPila {
             }
             
             System.out.println("\n¿Desea continuar ingresando mas cadenas?(si/no)");
-            System.out.print("Respuesta: ");
+            System.out.print("Respuesta:");
             String respuesta = in.nextLine().toLowerCase();
-            // Verificar si la respuesta no es "si" ni "no"
+
+            //Verificamos si la respuesta que nos ha dado el usuario es SI o NO.
             while (!respuesta.equals("si") && !respuesta.equals("no")) {
-                System.out.println("Respuesta no válida. Por favor, responda 'si' o 'no'.");
+                System.out.println("\nRespuesta no válida. Por favor, responda 'si' o 'no'.");
+                System.out.print("Respuesta:");
                 respuesta = in.nextLine().toLowerCase();
             }
             if (!respuesta.equals("si")) {
                 continuar = false;
-                System.out.println("\nPrograma Finalizado...");
             }   
         }
         while(continuar);
-        in.close();//cerrar el scanner
+        System.out.println("\nPrograma Finalizado...");
+        in.close();//cerramos el scanner para evitar la fuga de datos.
     }
 }
